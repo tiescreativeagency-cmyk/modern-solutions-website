@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Modern Solutions Construction — marketing site
 
-## Getting Started
+Next.js (App Router) + Tailwind CSS v4. Copy and structure are driven by [`data/site.js`](data/site.js) so you can rebrand or tweak messaging without hunting through components.
 
-First, run the development server:
+## Scripts
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `npm run dev` — local development
+- `npm run build` — production build
+- `npm start` — run production server
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project layout
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- `app/` — routes, layout, global styles
+- `components/` — sections and shared UI
+- `data/site.js` — **single source of truth** for navigation labels, CTAs, service areas, contact info, legal footer
+- `public/` — static assets (logos, favicon, photography)
+- `lib/utils.js` — `cn()` helper for Tailwind class merging
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Source content
 
-## Learn More
+Public-facing copy is aligned with [modernsolutionsconstruction.com](https://www.modernsolutionsconstruction.com). Replace the vanity `tel:` digits in `data/site.js` if your real routing differs from `855-95-MODERN`.
 
-To learn more about Next.js, take a look at the following resources:
+## Fonts & theme
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Primary:** white surfaces (`surface`, `background`).
+- **Secondary:** near-black (`foreground`, `secondary`) for type and the footer / tagline band.
+- **Tertiary (accent):** neon green `#39FF14` (logo-adjacent) for primary buttons, phone on dark, kicker text, dots, and link hovers — tuned in [`app/globals.css`](app/globals.css) under `@theme` (`accent`, `accent-dim`, `accent-subtle`, etc.).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Body font is DM Sans (`app/layout.js`).
