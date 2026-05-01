@@ -1,50 +1,30 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { FragmentAwareLink } from "@/components/FragmentAwareLink";
 import { site } from "@/data/site";
 
 /**
- * Background MP4 shipped in Git as /hero-video-default.mp4 (must be committed — see public/).
- * Optional: NEXT_PUBLIC_HERO_VIDEO_URL=https://...your-cdn.mp4 on Vercel for a HD file without committing it.
+ * Hero background: `public/hero-bg.gif` (generated from your MP4 via `npm run hero-gif`).
+ * Optional env overrides for CDN: NEXT_PUBLIC_HERO_GIF_URL
  */
-
-function heroVideoSrc() {
-  const v = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
+function heroGifSrc() {
+  const v = process.env.NEXT_PUBLIC_HERO_GIF_URL;
   if (typeof v === "string" && v.trim()) return v.trim();
-  return "/hero-video-default.mp4";
+  return "/hero-bg.gif";
 }
 
 export function HeroSection() {
-  const videoRef = useRef(null);
-  const src = heroVideoSrc();
-
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    const kick = () => {
-      el.muted = true;
-      el.defaultMuted = true;
-      el.play().catch(() => {});
-    };
-    kick();
-    el.addEventListener("loadeddata", kick);
-    return () => el.removeEventListener("loadeddata", kick);
-  }, [src]);
+  const src = heroGifSrc();
 
   return (
     <section className="relative min-h-[min(520px,calc(100vh-5rem))] overflow-hidden bg-black">
-      <video
-        ref={videoRef}
-        key={src}
-        className="absolute inset-0 z-0 h-full min-h-full w-full select-none object-cover"
+      <img
         src={src}
-        muted
-        playsInline
-        loop
-        autoPlay
-        preload="auto"
-        poster="/hero-video-poster.jpg"
+        alt=""
+        width={1920}
+        height={1080}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full select-none object-cover"
         aria-hidden
       />
 

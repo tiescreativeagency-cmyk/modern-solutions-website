@@ -37,7 +37,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-# Large local asset (> GitHub's 100MB limit). Compress with HandBrake/ffmpeg and commit a smaller MP4 under public/, or set NEXT_PUBLIC_HERO_VIDEO_URL in Vercel to a CDN/Blob URL.
+# Optional huge local MP4 only for regenerating the hero GIF (`npm run hero-gif`), not served by the app.
 /public/hero-video.mp4
 
 # typescript
